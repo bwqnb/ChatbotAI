@@ -107,7 +107,7 @@ trainer.train([
 
 exit_conditions = (":q", "quit", "exit", "Bye", "bye", "gnight", "good night", "byebye", "ciao")
 name = input("Enter Your Name: ")
-print("Welcome to the Bot Service! Let me know how can I help you?")
+print("You are now connected with the AI ChatBot.")
 while True:
     request = input("> ")
     # query = input(name + ": ")
