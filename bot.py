@@ -34,26 +34,32 @@ trainer.train([
 trainer.train([
     'What is the ship date of my order?',
     '06/30/2002'
+    # most likely will have to create a function that calls the most recent update of a database/data then finds the ID # and fetches the ship date of the order
 ])
 trainer.train([
     'What is the tracking number of my order?',
     '312319785'
+    # most likely will have to create a function that calls the most recent update of a database/data then finds the ID # and fetches the tracking number of the order
 ])
 trainer.train([
     'Do you have this item in stock?',
     'Yes, we currently have that available'
+    # most likely will have to fetch this from supply data
 ])
 trainer.train([
     'Do you have this item in stock?',
     'No, it is not available'
+    # most likely will have to fetch this from supply data
 ])
 trainer.train([
     'What is the estimate freight for my order?',
     '3 lb'
+    # most likely will have to fetch this from supply data
 ])
 trainer.train([
     'I need a copy of invoice.',
     'Here is a copy of the invoice.'
+    # ?
 ])
 trainer.train([
     'Okay Thanks',
@@ -66,30 +72,37 @@ trainer.train([
 trainer.train([
     'What is the price of the product?',
     '$3'
+    # most likely will have to fetch this from supply data
 ])
 trainer.train([
     'Did you receive my order?',
     'Yes, we received the order'
+    # most likely will have to fetch this from supply data
 ])
 trainer.train([
     'Did you receive my order?',
     'No, we did not receive the order'
+    # most likely will have to fetch this from supply data
 ])
 trainer.train([
     'Please send me product samples.',
     'Okay, retrieving product samples'
+    # ?
 ])
 trainer.train([
     'What is your production lead time?',
     '9-5:30'
+    # ?
 ])
 trainer.train([
     'Can you meet my in hand date?',
     'Yes, we have time'
+    # ?
 ])
 trainer.train([
     'Can you meet my in hand date?',
     'No, we do not have time'
+    # ?
 ])
 
 exit_conditions = (":q", "quit", "exit", "Bye", "bye", "gnight", "good night", "byebye", "ciao")
