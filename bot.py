@@ -12,10 +12,11 @@ chatbot = ChatBot(
             'import_path': 'chatterbot.logic.BestMatch',
             'default_response': 'I am sorry, but I do not understand.',
             'maximum_similarity_threshold': 0.90,
+            # 'response_selection_method': 'get_random_response'
 
         }
     ]
-    # , response_selection_method=get_random_response
+     
 )
 
 trainer = ListTrainer(chatbot)
