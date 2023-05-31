@@ -41,14 +41,16 @@ while user_input.lower() != 'exit':
     # Append the user's input to the conversation
     conversation.append(Statement(text=user_input))
 
+    # Get the bot's response to the user's input
+    bot_response = bot.get_response(user_input)
+    print("Bot:", bot_response)
+    
     # Get user feedback (1 for positive, 0 for negative)
     feedback = int(input("Is the response good? (1 for yes, 0 for no): "))
 
     # Train the bot based on the conversation and feedback
     train_bot(conversation, feedback)
 
-    # Get the bot's response to the user's input
-    bot_response = bot.get_response(user_input)
-    print("Bot:", bot_response)
+   
 
     user_input = input("User: ")
