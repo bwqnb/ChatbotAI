@@ -20,9 +20,7 @@ chatbot = ChatBot(
 )
 
 trainer = ListTrainer(chatbot)
-trainer2 = ChatterBotCorpusTrainer(chatbot)
-trainer2.train("chatterbot.corpus.english.conversations")
-trainer2.train("chatterbot.corpus.english.greetings")
+
 
 trainer.train([
     'Hi',
