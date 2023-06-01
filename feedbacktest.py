@@ -16,7 +16,7 @@ def train_bot(conversation, feedback):
     if feedback:
         # If the feedback is positive, mark the bot's response as correct
         bot_response.confidence = 1.0
-
+        print(bot_response.confidence)
         print("Thank you for your positive feedback!")
     else:
         # If the feedback is negative, prompt the user for an alternative response
@@ -43,14 +43,16 @@ while user_input.lower() != 'exit':
 
     # Get the bot's response to the user's input
     bot_response = bot.get_response(user_input)
-    print("Bot:", bot_response)
-    
+    print("Bot:", bot_response) 
+
+
     # Get user feedback (1 for positive, 0 for negative)
     feedback = int(input("Is the response good? (1 for yes, 0 for no): "))
 
     # Train the bot based on the conversation and feedback
     train_bot(conversation, feedback)
 
-   
 
     user_input = input("User: ")
+
+
