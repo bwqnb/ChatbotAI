@@ -5,6 +5,16 @@ from chatterbot.logic import BestMatch
 from chatterbot.response_selection import get_most_frequent_response
 from chatterbot.response_selection import get_random_response
 
+
+def get_user_feedback():
+    feedback = int(input("Is the response good? (1 for yes, 0 for no): "))
+    if feedback == 0:
+        weight = float(input("Enter the weight to influence the response (0.0 - 1.0): "))
+    else:
+        weight = 1.0
+    return feedback, weight
+
+
 chatbot = ChatBot(
     'My Chatbot',
     logic_adapters=[
@@ -114,5 +124,24 @@ while True:
         print('> Bye')
         break
     else:
-        print(f"> {chatbot.get_response(request)}")
-        # chatbot.get_response("Hello, how are you today?")
+        bot_response = chatbot.get_response(request)
+        print(f"> {bot_response}")
+        feedback, weight = get_user_feedback()
+
+        if feedback == 0:
+            alternative_response = input("Please provide an alternative response: ")
+
+            # Train the bot with the user input and alternative response
+            trainer.train([
+                request,
+                alternative_response
+            ])
+
+            # Decrease confidence for wrong answer
+            bot_response.confidence *= weight
+
+        else:
+            # Increase confidence for correct answer
+            bot_response.confidence *= 1.0
+            # chatbot.get_response("Hello, how are you today?")
+
