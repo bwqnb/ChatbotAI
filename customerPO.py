@@ -31,30 +31,26 @@ mysql = pd.read_sql(query2, conn2)
 # Close the database connection
 conn2.close()
 
-# Get the unique values from the first column of df1
-column1_values = mssql['ContactEmail'].unique()
+# Find the common emails between the two dataframes
+common_emails = set(mssql['ContactEmail']).intersection(mysql['email'])
 
-# Get the unique values from the second column of df2
-column2_values = mysql['email'].unique()
+# Filter the original dataframes to get the rows where the emails are common
+df1_common = mssql[mssql['ContactEmail'].isin(common_emails)]
+df2_common = mysql[mysql['email'].isin(common_emails)]
 
-# Find the common values between the two columns
-common_values = set(column1_values).intersection(column2_values)
+# Get the index values of the common emails in each dataframe
+common_emails_df1_indices = df1_common.index.values
+common_emails_df2_indices = df2_common.index.values
 
-# Add a new column 'IsCommon' to indicate if the value is common in df1
-mssql['IsCommon'] = mssql['ContactEmail'].isin(common_values)
+# Print the common emails and their indices in each dataframe
+print("Common emails in df1:")
+for email in common_emails:
+    indices = df1_common[df1_common['ContactEmail'] == email].index.values
+    print(f"Email: {email}, Indices in df1: {indices}")
 
-# Add a new column 'IsCommon' to indicate if the value is common in df2
-mysql['IsCommon'] = mysql['email'].isin(common_values)
+print("\nCommon emails in df2:")
+for email in common_emails:
+    indices = df2_common[df2_common['email'] == email].index.values
+    print(f"Email: {email}, Indices in df2: {indices}")
 
-# Filter the original DataFrames to get the rows where the values are common
-df1_common = mssql[mssql['IsCommon']]
-df2_common = mysql[mysql['IsCommon']]
-
-# Get the common strings along with their original locations
-common_strings_df1 = df1_common[['ContactEmail']]
-common_strings_df2 = df2_common[['email']]
-
-# Print the common strings and their original locations
-print(common_strings_df1.head())
-print(common_strings_df2.head())
  
