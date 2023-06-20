@@ -43,14 +43,11 @@ common_emails_df1_indices = df1_common.index.values
 common_emails_df2_indices = df2_common.index.values
 
 # Print the common emails and their indices in each dataframe
-print("Common emails in df1:")
+print("Common emails in both:")
 for email in common_emails:
-    indices = df1_common[df1_common['ContactEmail'] == email].index.values
-    print(f"Email: {email}, Indices in df1: {indices}")
-
-print("\nCommon emails in df2:")
-for email in common_emails:
-    indices = df2_common[df2_common['email'] == email].index.values
-    print(f"Email: {email}, Indices in df2: {indices}")
+    indices1 = df1_common[df1_common['ContactEmail'] == email].index.values
+    indices2 = df2_common[df2_common['email'] == email].index.values
+    print(f"Email in OrderCustomerPO: {email}, Indices in OrderCustomerPO: {indices1}")
+    print(f"Email in userinfo: {email}, Indices in userinfo: {indices2}\n")
 
  
