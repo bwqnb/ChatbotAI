@@ -5,6 +5,8 @@ from tqdm import tqdm
 import dask.dataframe as dd
 import pymysql
 import ray
+import warnings
+warnings.filterwarnings("ignore")
 
 ray.init()
 
@@ -25,7 +27,7 @@ conn2 = pymysql.connect(
     charset='utf8mb4'  
 )
 print("Connected")
-query2 = "SELECT customer_id, email FROM users"
+query2 = "SELECT customer_id, email, access_all_orders FROM users"
 mysql = pd.read_sql(query2, conn2)
 
 # Close the database connection
@@ -62,7 +64,11 @@ if result_email:
         result_customerid = other_data_mssql == other_data_mysql
 
         if result_customerid:
-            print("Yes we did it")
+            other_data_mysql = row_mysql['access_all_orders'].values[0]
+            if other_data_mysql:
+                print("yay")
+            else:
+                print("need master office")
         else:
             print("Bruh")
 
